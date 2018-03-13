@@ -25,7 +25,7 @@ $('.generate-button').on('click', () => {
 
 $(document).keydown(event => {
   const focused = document.activeElement.tagName === 'INPUT';
-  if (event.which == 32 && !focused) {
+  if (event.which === 32 && !focused) {
     event.preventDefault();
     setColors();
   }
