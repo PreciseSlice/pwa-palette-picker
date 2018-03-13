@@ -44,13 +44,10 @@ header h1 {
 }
 
 .generate-inputs input {
-  border-radius: 40px;
-  height: 40px;
-  font-size: 16px;
   margin: 30px;
 }
 
-.generate-inputs select {
+.generate-inputs input, select {
   border-radius: 40px;
   height: 40px;
   font-size: 16px;
@@ -58,4 +55,62 @@ header h1 {
 
 ::-webkit-input-placeholder {
   text-align: center;
+}
+
+#new-project-text {
+  font-size: 32px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.new-project-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.new-project-container input, button {
+  border-radius: 40px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.new-project-container button {
+  margin-left: 30px;
+}
+
+.all-past-project-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.past-project {
+  font-size: 26px;
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.past-palette-squares {
+  border: 1px solid black;
+  height: 20px;
+  margin-left: 10px;
+  width: 20px;
+}
+
+.past-project-square-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+}
+
+.past-project-square-container img {
+  margin-left: 10px;
+}
+
+.h3-container {
+  border: 1px solid black;
+  width: 150px;
 }
