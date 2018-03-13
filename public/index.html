@@ -16,14 +16,14 @@
       <h1>Palette Picker</h1>
     </header>
     <section class="main-square-container">
-      <div class="main-color-squares"></div>
-      <div class="main-color-squares"></div>
-      <div class="main-color-squares"></div>
-      <div class="main-color-squares"></div>
-      <div class="main-color-squares"></div>
+      <div class="main-color-squares" id="square-one"></div>
+      <div class="main-color-squares" id="square-two"></div>
+      <div class="main-color-squares" id="square-three"></div>
+      <div class="main-color-squares" id="square-four"></div>
+      <div class="main-color-squares" id="square-five"></div>
     </section>
     <section class="generate-container">
-      <button>Generate New Palette!</button>
+      <button class="generate-button">Generate New Palette!</button>
       <div class="generate-inputs">
         <select name="" id="">
           <option value="">project one</option>
@@ -34,49 +34,54 @@
     </section>
     <hr>
     <section>
-      <h3>Create a new project:</h3>
-      <div>
+      <h3 id="new-project-text">create a new project:</h3>
+      <div class="new-project-container">
         <input type="text" placeholder="New project name">
         <button>Save Project</button>
       </div>
-      <section>
-        <div>
-          <div class="project-one"></div>
-          <div>
-            <h3>Palette 1</h3>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <img src="" alt="">
+      <section class="all-past-project-container">
+        <div class="past-project">
+          <div class="h3-container">
+            <h3>Project 1</h3>
           </div>
-          <div>
+          <div class="past-project-square-container">
+            <h3>Palette 1</h3>
+            <div class="past-palette-squares"></div>
+            <div class="past-palette-squares"></div>
+            <div class="past-palette-squares"></div>
+            <div class="past-palette-squares"></div>
+            <div class="past-palette-squares"></div>
+            <img src="" alt="delete">
+          </div>
+          <div class="past-project-square-container">
             <h3>Warm combo</h3>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <img src="" alt="">
+            <div class="past-palette-squares"></div>
+            <div class="past-palette-squares"></div>
+            <div class="past-palette-squares"></div>
+            <div class="past-palette-squares"></div>
+            <div class="past-palette-squares"></div>
+            <img src="" alt="delete">
           </div>
         </div>
-        <div>
-          <div class="project-two"></div>
-          <div>
+        <div class="past-project">
+          <div class="h3-container">
+            <h3>Project 2</h3>
+          </div>
+          <div class="past-project-square-container">
             <h3>Palette 1</h3>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <img src="" alt="">
+            <div class="past-palette-squares"></div>
+            <div class="past-palette-squares"></div>
+            <div class="past-palette-squares"></div>
+            <div class="past-palette-squares"></div>
+            <div class="past-palette-squares"></div>
+            <img src="" alt="delete">
           </div>
         </div>
       </section>
     </section>
   </section>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="./js/scripts.js"></script>
 </body>
 
 </html>
