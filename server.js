@@ -12,13 +12,21 @@ app.locals.palettes = [
     projectId: 1,
     paletteId: 1,
     paletteName: 'pallet one',
-    colors: ['#848f5b', '#21fe01', '#76789c', '#6c63d3', '#f0f759']
+    colorOne: '#848f5b',
+    colorTwo: '#21fe01',
+    colorThree: '#76789c',
+    colorFour: '#6c63d3',
+    colorFive: '#f0f759'
   },
   {
     projectId: 1,
     paletteId: 2,
     paletteName: 'pallet two',
-    colors: ['#847f5c', '#51fe21', '#96285c', '#1c66d3', '#f2f621']
+    colorOne: '#847f5c',
+    colorTwo: '#51fe21',
+    colorThree: '#96285c',
+    colorFour: '#1c66d3',
+    colorFive: '#f2f621'
   }
 ];
 
@@ -30,13 +38,13 @@ app.listen(app.get('port'), () => {
   );
 });
 
-app.get('/api/v1/projects/:paletteId', (request, response) => {
-  const { id } = request.params;
-  const requestId = parseInt(id);
-  const project = app.locals.projects.filter(project => project.id === requestId)
+app.get('/api/v1/projects/:projectId', (request, response) => {
+  const { projectId } = request.params;
+  const requestId = parseInt(projectId);
+  const project = app.locals.projects.filter(project => project.projectId === requestId)
   const palette = app.locals.palettes.filter(palette => palette.projectId === requestId);
 
-  if (palette) {
+  if (project && palette) {
     return response.status(200).json({project, palette});
   } else {
     return response.sendStatus(404);
@@ -46,7 +54,7 @@ app.get('/api/v1/projects/:paletteId', (request, response) => {
 app.get('/api/v1/palettes/:id', (request, response) => {
   const { id } = request.params;
   const requestId = parseInt(id);
-  const palette = app.locals.palettes.filter(palette => palette.id === requestId);
+  const palette = app.locals.palettes.filter(palette => palette.paletteId === requestId);
 
   if (palette) {
     return response.status(200).json(palette);
