@@ -60,10 +60,8 @@ mainColorSquares.on('click', event => {
 savePaletteBtn.on('click', event => {
   event.preventDefault();
   const hexArray = $('.main-color-squares h3')
-  .text()
-  .match(/.{7}/g);
-
-  console.log(hexArray);
+    .text()
+    .match(/.{7}/g);
   //console.log({colorOne: hexArray[0]});
   const paletteName = $('.generate-inputs input').val();
 });
