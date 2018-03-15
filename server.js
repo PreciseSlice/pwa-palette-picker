@@ -15,6 +15,20 @@ app.listen(app.get('port'), () => {
   );
 });
 
+app.get('/api/v1/projects/', (request, response) => {
+  database('projects')
+    .select()
+    .then(projects => {
+      if (projects.length) {
+        response.status(200).json(projects);
+      } else {
+        response.status(404).json({
+          error: 'projects not found'
+        });
+      }
+    })
+})
+
 app.get('/api/v1/projects/:id', (request, response) => {
   database('projects')
     .where('id', request.params.id)

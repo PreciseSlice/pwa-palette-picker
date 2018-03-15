@@ -4,6 +4,10 @@ const mainColorSquares = $('.main-color-squares');
 const savePaletteBtn = $('.save-palette-button');
 const saveProjectBtn = $('.save-project-button');
 const documentWindow = $(window);
+const select = $('.projects-select');
+const hexCode = $('.main-color-squares h3');
+const paletteNameInput = $('.generate-inputs input');
+const projectNameInput = $('.new-project-container input');
 
 const getRandomHex = () => {
   return (
@@ -27,6 +31,30 @@ const setColors = () => {
     }
   }
 };
+
+const fetchFromApi = async url => {
+  const initialFetch = await fetch(url);
+
+  return await validateResponce(initialFetch);
+};
+
+const validateResponce = initialFetch => {
+  if (initialFetch.status <= 200) {
+    return initialFetch.json();
+  } else {
+    throw new Error('Status code > 200');
+  }
+};
+
+const getProjects = async () => {
+  const projects = await fetchFromApi('http://localhost:3000/api/v1/projects/');
+
+  projects.forEach(project => {
+    select.append($(`<option value="${project.id}" >${project.name}</option>`));
+  });
+};
+
+documentWindow.on('load', getProjects);
 
 documentWindow.on('load', setColors);
 
@@ -59,14 +87,14 @@ mainColorSquares.on('click', event => {
 
 savePaletteBtn.on('click', event => {
   event.preventDefault();
-  const hexArray = $('.main-color-squares h3')
-    .text()
-    .match(/.{7}/g);
+  const hexArray = hexCode.text().match(/.{7}/g);
+  const paletteName = paletteNameInput.val();
+  const id = select.val();
+
   //console.log({colorOne: hexArray[0]});
-  const paletteName = $('.generate-inputs input').val();
 });
 
 saveProjectBtn.on('click', event => {
   event.preventDefault();
-  const projectName = $('.new-project-container input').val();
+  const projectName = projectNameInput.val();
 });
