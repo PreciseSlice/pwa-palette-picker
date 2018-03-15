@@ -1,3 +1,10 @@
+const doc = $(document);
+const generateButton = $('.generate-button');
+const mainColorSquares = $('.main-color-squares');
+const savePaletteBtn = $('.save-palette-button');
+const saveProjectBtn = $('.save-project-button');
+const documentWindow = $(window);
+
 const getRandomHex = () => {
   return (
     '#' +
@@ -8,7 +15,7 @@ const getRandomHex = () => {
 };
 
 const setColors = () => {
-  for (let i = 1; i < 6; i++) {
+  for (let i = 0; i < 5; i++) {
     const randomColor = getRandomHex();
     const image = $(`#square-${i} img`);
 
@@ -21,13 +28,13 @@ const setColors = () => {
   }
 };
 
-$(window).on('load', setColors);
+documentWindow.on('load', setColors);
 
-$('.generate-button').on('click', () => {
+generateButton.on('click', () => {
   setColors();
 });
 
-$(document).keydown(event => {
+doc.keydown(event => {
   const focused = document.activeElement.tagName === 'INPUT';
   if (event.which === 32 && !focused) {
     event.preventDefault();
@@ -35,7 +42,7 @@ $(document).keydown(event => {
   }
 });
 
-$('.main-color-squares').on('click', event => {
+mainColorSquares.on('click', event => {
   event.preventDefault();
   const image = $(`#${event.target.id} img`);
 
@@ -50,14 +57,18 @@ $('.main-color-squares').on('click', event => {
   }
 });
 
-$('.save-palette-button').on('click', event => {
+savePaletteBtn.on('click', event => {
   event.preventDefault();
-  const hexArray = $('.main-color-squares h3').text().match(/.{7}/g);
+  const hexArray = $('.main-color-squares h3')
+  .text()
+  .match(/.{7}/g);
+
+  console.log(hexArray);
   //console.log({colorOne: hexArray[0]});
   const paletteName = $('.generate-inputs input').val();
-})
+});
 
-$('.save-project-button').on('click', event => {
+saveProjectBtn.on('click', event => {
   event.preventDefault();
   const projectName = $('.new-project-container input').val();
-})
+});
