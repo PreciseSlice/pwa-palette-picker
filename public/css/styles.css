@@ -1,47 +1,105 @@
 body {
-  background-color: #dce7cf;
-  font-family: monospace;
+  background-color: #cfe0ec;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+}
+
+button {
+  background-color: #f8f8f8;
+  border-radius: 40px;
+  color: #7d7d7d;
+  font-size: 20px;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: .15em;
+  outline: none;
+  width: 10%;
+}
+
+header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 header h1 {
-  color: azure;
+  color: #7d7d7d;
   font-size: 62px;
-  margin-top: 1%;
+  font-weight: 500;
+  margin: 2.5%;
+  letter-spacing: 10px;
   text-align: center;
+}
+
+header button {
+  width: 10%;
 }
 
 .main-square-container {
   align-items: center;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin-top: 1%;
+  justify-content: space-evenly;
+  margin-top: 2.5%;
 }
 
 .main-color-squares {
   align-items: center;
   background-color: #808080;
   border: 1px solid black;
+  border-radius: 30px;
   display: flex;
   flex-direction: column;
   height: 450px;
-  margin-left: 30px;
-  width: 400px;
+  width: 17.5%;
 }
 
 .main-color-squares h3 {
-  color: #121416;
-  margin-top: 30px;
+  color: white;
   font-size: 32px;
-  opacity: 0.6;
 }
 
 .main-color-squares img {
   height: 50px;
-  margin-top: auto;
-  margin-bottom: 30px;
   width: 50px;
-  opacity: 0.6;
+}
+
+.palette-overlay {
+  align-items: center;
+  background-color:rgba(77, 76, 76, 0.7);
+  border-radius: 0 0 30px 30px;
+  display: flex;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.25em;
+  height: 18%;
+  margin-top: auto;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.inputs-container {
+  align-items: center;
+  color: #7d7d7d;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1.5%;
+}
+
+.inputs-container input, select {
+  font-size: 18px;
+}
+
+.inputs-container button {
+  width: 200px;
+}
+
+.inputs-container input {
+  margin: 0 30px;
+  height: 35px;
+}
+
+.inputs-container select {
+  height: 40px;
 }
 
 .generate-container {
@@ -52,33 +110,19 @@ header h1 {
   margin-top: 30px;
 }
 
-.generate-container button {
-  border-radius: 40px;
-  height: 40px;
-  font-size: 16px;
-}
-
 .generate-inputs {
-  /* margin-top: 30px; */
+  display: flex;
+  margin-top: 30px;
 }
 
-.generate-inputs input {
-  margin: 30px;
-}
-
-.generate-inputs input, select {
-  border-radius: 40px;
-  height: 40px;
-  font-size: 16px;
-}
-
-::-webkit-input-placeholder {
-  text-align: center;
+.create-new-container {
+  display: flex;
+  margin-top: 30px;
 }
 
 #new-project-text {
   font-size: 32px;
-  text-align: center;
+  letter-spacing: .1em;
   margin-top: 30px;
 }
 
@@ -89,14 +133,12 @@ header h1 {
   margin-top: 30px;
 }
 
-.new-project-container input, button {
-  border-radius: 40px;
+.new-project-container button {
   height: 40px;
-  font-size: 16px;
 }
 
-.new-project-container button {
-  margin-left: 30px;
+.new-project-container input {
+  height: 35px;
 }
 
 .all-past-project-container {
