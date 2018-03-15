@@ -37,8 +37,10 @@ header button {
 
 .main-square-container {
   align-items: center;
+  background-color: lightgrey;
   display: flex;
   flex-direction: row;
+  height: 600px;
   justify-content: space-evenly;
   margin-top: 2.5%;
 }
@@ -46,8 +48,9 @@ header button {
 .main-color-squares {
   align-items: center;
   background-color: #808080;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 30px;
+  box-shadow: 0 0 4px 4px rgba(87, 87, 87, 0.6);
   display: flex;
   flex-direction: column;
   height: 450px;
