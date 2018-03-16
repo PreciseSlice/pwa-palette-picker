@@ -9,6 +9,7 @@ const hexCode = $('.main-color-squares h3');
 const paletteNameInput = $('.generate-inputs input');
 const projectNameInput = $('.new-project-container input');
 const pastProjectContainer = $('.all-past-project-container');
+const deleteBtn = $('.delete-btn');
 
 const getRandomHex = () => {
   return (
@@ -59,53 +60,64 @@ const postToApi = async (url, data) => {
 
 const getProjects = async () => {
   const projects = await getFromApi('http://localhost:3000/api/v1/projects/');
-  
-  projects.forEach( async project => {
+
+  projects.forEach(async project => {
     const { id, name } = project;
-    const palette = await getFromApi(
+    const palettes = await getFromApi(
       `http://localhost:3000/api/v1/palettes/${id}`
     );
-
-    select.append($(`<option value="${id}" >${name}</option>`));
     
+    //console.log(palettes)
+    select.append($(`<option value="${id}" >${name}</option>`));
+
     pastProjectContainer.append(
       $(`
       <div class="past-project">
         <div class="h3-container">
-          <h3>${name}</h3>
+        <h3>${name}</h3>
         </div>      
-        <div class="past-project-square-container">
-          <h3>project</h3>
-          <div class="past-palette-squares"></div>
-          <div class="past-palette-squares"></div>
-          <div class="past-palette-squares"></div>
-          <div class="past-palette-squares"></div>
-          <div class="past-palette-squares"></div>
-          <img src="" alt="delete">
+        <div class="past-project-square-container" id="project${id}">
         </div>
       </div>
       `)
     );
+    appendPalettes(palettes);
   });
 };
 
-const appendPalettes = async () => {
-  const id = select.val();
+const appendPalettes = async palettes => {
+  palettes.forEach(palette => {
+      const {
+        palette_name,
+        project_id,
+        color_one,
+        color_two,
+        color_three,
+        color_four,
+        color_five
+      } = palette;
 
-  console.log(id);
-
-  const palettes = await getFromApi(
-    `http://localhost:3000/api/v1/palettes/${id}`
-  );
-
-  console.log(palettes);
+      const paletteTemplate =
+        `
+          <div class="square-cards">
+            <h3>${palette_name}</h3>
+              <div class="thumbnails">
+                <div class="past-palette-squares" style="background-color: ${color_one}"></div>
+                <div class="past-palette-squares" style="background-color: ${color_two}"></div>
+                <div class="past-palette-squares" style="background-color: ${color_three}"></div>
+                <div class="past-palette-squares" style="background-color: ${color_four}"></div>
+                <div class="past-palette-squares" style="background-color: ${color_five}"></div>
+              </div>
+            <button class="delete-btn">delete</button>
+          </div>
+        `
+      $(`#project${project_id}`).append(paletteTemplate);
+  });
 };
 
 documentWindow.on('load', getProjects);
 
 documentWindow.on('load', setColors);
-
-// documentWindow.on('load', appendPalettes);
 
 generateButton.on('click', () => {
   setColors();
@@ -169,3 +181,7 @@ saveProjectBtn.on('click', event => {
     alert('Please eneter a project name');
   }
 });
+
+deleteBtn.on('click', event => {
+  event.preventDefault();
+})

@@ -26,7 +26,7 @@ header h1 {
   color: #7d7d7d;
   font-size: 62px;
   font-weight: 500;
-  margin: 2.5%;
+  margin: 2%;
   letter-spacing: 10px;
   text-align: center;
 }
@@ -41,9 +41,9 @@ header button {
   background-color: #7d7d7d;
   display: flex;
   flex-direction: row;
-  height: 600px;
+  height: 550px;
   justify-content: space-evenly;
-  margin-top: 2.5%;
+  margin-top: 2%; 
 }
 
 .main-color-squares {
@@ -147,15 +147,16 @@ header button {
   flex-wrap: wrap;
   justify-content: space-evenly;
   margin-top: 1.5%;
+  margin-bottom: 30px;
 }
 
 .past-project {
   border: 1px solid black;
   font-size: 26px;
-  height: 150px;
+  height: 300px;
   margin-top: 30px;
-  padding: 10px;
-  width: 400px;
+  width: 500px;
+  overflow: auto;
 }
 
 .past-palette-squares {
@@ -167,8 +168,9 @@ header button {
 
 .past-project-square-container {
   display: flex;
-  flex-direction: row;
   margin-top: 30px;
+  flex-wrap: wrap;;
+  justify-content: center;
 }
 
 .past-project-square-container img {
@@ -176,5 +178,24 @@ header button {
 }
 
 .h3-container {
-  width: 150px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.square-cards {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 30px;
+}
+
+.square-cards button {
+  height: 34px;
+  width: 100px;
+}
+
+.thumbnails {
+  display: flex;
+  margin: 0 30px;
 }
