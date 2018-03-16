@@ -41,7 +41,7 @@ header button {
   background-color: #7d7d7d;
   display: flex;
   flex-direction: row;
-  height: 550px;
+  height: 500px;
   justify-content: space-evenly;
   margin-top: 2%; 
 }
@@ -52,7 +52,7 @@ header button {
   box-shadow: 0 0 4px 4px rgba(87, 87, 87, 0.6);
   display: flex;
   flex-direction: column;
-  height: 450px;
+  height: 400px;
   width: 17.5%;
 }
 
