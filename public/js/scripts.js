@@ -74,10 +74,9 @@ const getProjects = async () => {
   projects.forEach(async project => {
     const { id, name } = project;
     const palettes = await getFromApi(
-      `http://localhost:3000/api/v1/palettes/${id}`
+      `/api/v1/palettes/${id}`
     );
-    
-    //console.log(palettes)
+
     select.append($(`<option value="${id}" >${name}</option>`));
 
     pastProjectContainer.append(
