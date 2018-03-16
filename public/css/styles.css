@@ -84,7 +84,6 @@ header button {
   color: #7d7d7d;
   display: flex;
   justify-content: space-evenly;
-  margin-top: 1.5%;
 }
 
 .inputs-container input, select {
@@ -145,15 +144,18 @@ header button {
 
 .all-past-project-container {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 30px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 1.5%;
 }
 
 .past-project {
+  border: 1px solid black;
   font-size: 26px;
+  height: 150px;
+  margin-top: 30px;
   padding: 10px;
-  margin-left: 10px;
+  width: 400px;
 }
 
 .past-palette-squares {
@@ -174,6 +176,5 @@ header button {
 }
 
 .h3-container {
-  border: 1px solid black;
   width: 150px;
 }
