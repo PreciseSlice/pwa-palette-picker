@@ -69,7 +69,7 @@ const deleteFromApi = async url => {
 }
 
 const getProjects = async () => {
-  const projects = await getFromApi('http://localhost:3000/api/v1/projects/');
+  const projects = await getFromApi('/api/v1/projects/');
 
   projects.forEach(async project => {
     const { id, name } = project;
@@ -173,7 +173,7 @@ savePaletteBtn.on('click', event => {
   };
 
   if (paletteName) {
-    postToApi('http://localhost:3000/api/v1/palettes/', hexObject);
+    postToApi('/api/v1/palettes/', hexObject);
   } else {
     alert('Please enter a palette name');
   }
@@ -186,7 +186,7 @@ saveProjectBtn.on('click', event => {
   };
 
   if (projectName) {
-    postToApi('http://localhost:3000/api/v1/projects', projectName);
+    postToApi('/api/v1/projects', projectName);
     getProjects();
   } else {
     alert('Please eneter a project name');
@@ -196,5 +196,5 @@ saveProjectBtn.on('click', event => {
 pastProjectContainer.on('click', '.delete-btn', event => {
   event.preventDefault();
   id = event.target.id
-  deleteFromApi(`http://localhost:3000/api/v1/palettes/${id}`)
+  deleteFromApi(`/api/v1/palettes/${id}`)
 })
