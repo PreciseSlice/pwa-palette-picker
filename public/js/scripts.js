@@ -69,7 +69,7 @@ const deleteFromApi = async url => {
 }
 
 const getProjects = async () => {
-  const projects = await getFromApi('/api/v1/projects/');
+  const projects = await getFromApi('/api/v1/projects');
 
   projects.forEach(async project => {
     const { id, name } = project;
@@ -172,7 +172,7 @@ savePaletteBtn.on('click', event => {
   };
 
   if (paletteName) {
-    postToApi('/api/v1/palettes/', hexObject);
+    postToApi('/api/v1/palettes', hexObject);
   } else {
     alert('Please enter a palette name');
   }
