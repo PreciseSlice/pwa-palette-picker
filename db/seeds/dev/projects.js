@@ -11,12 +11,6 @@ exports.seed = function(knex, Promise) {
             },
             'id'
           )
-          .insert(
-            {
-              name: 'second project'
-            },
-            'id'
-          )
           .then(project => {
             return knex('palettes').insert([
               {
