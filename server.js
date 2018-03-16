@@ -15,7 +15,7 @@ app.listen(app.get('port'), () => {
   );
 });
 
-app.get('/api/v1/projects/', (request, response) => {
+app.get('/api/v1/projects', (request, response) => {
   database('projects')
     .select()
     .then(projects => {
@@ -68,7 +68,7 @@ app.get('/api/v1/palettes/:id', (request, response) => {
     });
 });
 
-app.post('/api/v1/palettes/', (request, response) => {
+app.post('/api/v1/palettes', (request, response) => {
   const palette = request.body;
 
   for (let requiredParameter of ['palette_name']) {
@@ -90,7 +90,7 @@ app.post('/api/v1/palettes/', (request, response) => {
     });
 });
 
-app.post('/api/v1/projects/', (request, response) => {
+app.post('/api/v1/projects', (request, response) => {
   const project = request.body;
 
   for (let requiredParameter of ['name']) {
