@@ -8,6 +8,7 @@ const select = $('.projects-select');
 const hexCode = $('.main-color-squares h3');
 const paletteNameInput = $('.generate-inputs input');
 const projectNameInput = $('.new-project-container input');
+const pastProjectContainer = $('.all-past-project-container');
 
 const getRandomHex = () => {
   return (
@@ -32,31 +33,79 @@ const setColors = () => {
   }
 };
 
-const fetchFromApi = async url => {
-  const initialFetch = await fetch(url);
+const getFromApi = async url => {
+  try {
+    const initialFetch = await fetch(url);
 
-  return await validateResponce(initialFetch);
+    return await initialFetch.json();
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-const validateResponce = initialFetch => {
-  if (initialFetch.status <= 200) {
-    return initialFetch.json();
-  } else {
-    throw new Error('Status code > 200');
+const postToApi = async (url, data) => {
+  try {
+    const initialFetch = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  } catch (error) {
+    console.log(error);
   }
 };
 
 const getProjects = async () => {
-  const projects = await fetchFromApi('http://localhost:3000/api/v1/projects/');
+  const projects = await getFromApi('http://localhost:3000/api/v1/projects/');
+  
+  projects.forEach( async project => {
+    const { id, name } = project;
+    const palette = await getFromApi(
+      `http://localhost:3000/api/v1/palettes/${id}`
+    );
 
-  projects.forEach(project => {
-    select.append($(`<option value="${project.id}" >${project.name}</option>`));
+    select.append($(`<option value="${id}" >${name}</option>`));
+    
+    pastProjectContainer.append(
+      $(`
+      <div class="past-project">
+        <div class="h3-container">
+          <h3>${name}</h3>
+        </div>      
+        <div class="past-project-square-container">
+          <h3>project</h3>
+          <div class="past-palette-squares"></div>
+          <div class="past-palette-squares"></div>
+          <div class="past-palette-squares"></div>
+          <div class="past-palette-squares"></div>
+          <div class="past-palette-squares"></div>
+          <img src="" alt="delete">
+        </div>
+      </div>
+      `)
+    );
   });
+};
+
+const appendPalettes = async () => {
+  const id = select.val();
+
+  console.log(id);
+
+  const palettes = await getFromApi(
+    `http://localhost:3000/api/v1/palettes/${id}`
+  );
+
+  console.log(palettes);
 };
 
 documentWindow.on('load', getProjects);
 
 documentWindow.on('load', setColors);
+
+// documentWindow.on('load', appendPalettes);
 
 generateButton.on('click', () => {
   setColors();
@@ -90,11 +139,33 @@ savePaletteBtn.on('click', event => {
   const hexArray = hexCode.text().match(/.{7}/g);
   const paletteName = paletteNameInput.val();
   const id = select.val();
+  const hexObject = {
+    project_id: id,
+    palette_name: paletteName,
+    color_one: hexArray[0],
+    color_two: hexArray[1],
+    color_three: hexArray[2],
+    color_four: hexArray[3],
+    color_five: hexArray[4]
+  };
 
-  //console.log({colorOne: hexArray[0]});
+  if (paletteName) {
+    postToApi('http://localhost:3000/api/v1/palettes/', hexObject);
+  } else {
+    alert('Please enter a palette name');
+  }
 });
 
 saveProjectBtn.on('click', event => {
   event.preventDefault();
-  const projectName = projectNameInput.val();
+  const projectName = {
+    name: projectNameInput.val()
+  };
+
+  if (projectName) {
+    postToApi('http://localhost:3000/api/v1/projects', projectName);
+    getProjects();
+  } else {
+    alert('Please eneter a project name');
+  }
 });

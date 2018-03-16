@@ -26,8 +26,8 @@ app.get('/api/v1/projects/', (request, response) => {
           error: 'projects not found'
         });
       }
-    })
-})
+    });
+});
 
 app.get('/api/v1/projects/:id', (request, response) => {
   database('projects')
@@ -49,7 +49,7 @@ app.get('/api/v1/projects/:id', (request, response) => {
 
 app.get('/api/v1/palettes/:id', (request, response) => {
   database('palettes')
-    .where('id', request.params.id)
+    .where('project_id', request.params.id)
     .select()
     .then(palette => {
       if (palette.length) {
