@@ -58,6 +58,16 @@ const postToApi = async (url, data) => {
   }
 };
 
+const deleteFromApi = async url => {
+  try {
+    const initialFetch = await fetch(url, {
+      method: 'DELETE',
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const getProjects = async () => {
   const projects = await getFromApi('http://localhost:3000/api/v1/projects/');
 
@@ -88,6 +98,7 @@ const getProjects = async () => {
 const appendPalettes = async palettes => {
   palettes.forEach(palette => {
       const {
+        id,
         palette_name,
         project_id,
         color_one,
@@ -108,7 +119,7 @@ const appendPalettes = async palettes => {
                 <div class="past-palette-squares" style="background-color: ${color_four}"></div>
                 <div class="past-palette-squares" style="background-color: ${color_five}"></div>
               </div>
-            <button class="delete-btn">delete</button>
+            <button class="delete-btn" id="${id}">delete</button>
           </div>
         `
       $(`#project${project_id}`).append(paletteTemplate);
@@ -182,6 +193,8 @@ saveProjectBtn.on('click', event => {
   }
 });
 
-deleteBtn.on('click', event => {
+pastProjectContainer.on('click', '.delete-btn', event => {
   event.preventDefault();
+  id = event.target.id
+  deleteFromApi(`http://localhost:3000/api/v1/palettes/${id}`)
 })
