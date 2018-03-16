@@ -26,6 +26,9 @@ app.get('/api/v1/projects/', (request, response) => {
           error: 'projects not found'
         });
       }
+    })
+    .catch(error => {
+      response.status(500).json({ error });
     });
 });
 
@@ -59,6 +62,9 @@ app.get('/api/v1/palettes/:id', (request, response) => {
           error: `Could not find palette with id ${request.params.id}`
         });
       }
+    })
+    .catch(error => {
+      response.status(500).json({ error });
     });
 });
 
@@ -119,5 +125,8 @@ app.delete('/api/v1/palettes/:id', (request, response) => {
           error: 'No paletteId property provided'
         });
       }
+    })
+    .catch(error => {
+      response.status(500).json({ error });
     });
 });
