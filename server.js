@@ -17,11 +17,11 @@ app.listen(app.get('port'), () => {
   );
 });
 
-sever.get('*', function(req, res) {  
+server.get('*', function(req, res) {  
     res.redirect('https://' + req.headers.host + req.url);
 })
 
-sever.listen(8080);
+server.listen(8080);
 
 app.get('/api/v1/projects', (request, response) => {
   database('projects')
