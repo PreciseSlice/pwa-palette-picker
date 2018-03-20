@@ -11,9 +11,13 @@ const requireHTTPS = (req, res, next) => {
     next();
 };
 
+app.enable('trust proxy');
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Palette Picker';
 app.use(bodyParser.json());
+
+if (process.env.NODE_ENV === 'production') { app.use(requireHTTPS); }
+
 app.use(express.static('public'));
 app.listen(app.get('port'), () => {
   console.log(
@@ -22,7 +26,6 @@ app.listen(app.get('port'), () => {
 });
 
 
-if (process.env.NODE_ENV === 'production') { app.use(requireHTTPS); }
 
 
 app.get('/api/v1/projects', (request, response) => {
