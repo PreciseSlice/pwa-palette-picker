@@ -8,7 +8,7 @@ const requireHTTPS = (req, res, next) => {
   if (req.headers['x-forwarded-proto'] !== 'https') {
     return res.redirect('https://' + req.get('host') + req.url);
   }
-    next();
+  next();
 };
 
 app.enable('trust proxy');
@@ -16,7 +16,9 @@ app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Palette Picker';
 app.use(bodyParser.json());
 
-if (process.env.NODE_ENV === 'production') { app.use(requireHTTPS); }
+if (process.env.NODE_ENV === 'production') {
+  app.use(requireHTTPS);
+}
 
 app.use(express.static('public'));
 app.listen(app.get('port'), () => {
@@ -24,9 +26,6 @@ app.listen(app.get('port'), () => {
     `${app.locals.title} sever is running on port ${app.get('port')}.`
   );
 });
-
-
-
 
 app.get('/api/v1/projects', (request, response) => {
   database('projects')
