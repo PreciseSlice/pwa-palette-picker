@@ -9,6 +9,16 @@
       "src": "./assets/closed-padlock.svg",
       "type": "image/png",
       "sizes": "48x48"
+    },
+    {
+      "src": "./assets/closed-padlock.svg",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./assets/closed-padlock.svg",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": "https://sh-pwa-palette-picker.herokuapp.com/"
