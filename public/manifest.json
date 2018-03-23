@@ -1,0 +1,15 @@
+{
+  "short_name": "Palette-Picker",
+  "name": "Palette-Picker App",
+  "background_color": "#cfe0ec",
+  "theme_color": "#7d7d7d",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "./assets/closed-padlock.svg",
+      "type": "image/png",
+      "sizes": "48x48"
+    }
+  ],
+  "start_url": "https://sh-pwa-palette-picker.herokuapp.com/"
+}
